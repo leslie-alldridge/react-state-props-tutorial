@@ -71,7 +71,12 @@ class SolutionParent extends Component {
             name={this.state.name}
             age={this.state.age}
             location={this.state.location}
+            //This one is interesting as my first component (parent) named App.js
+            //Passed it through to my other Parent component (SolutionParent) which later
+            //passed it here, to my SolutionPage component.
             reset={this.props.reset}
+            //I don't recommend doing this, but it shows how props can be passed
+            //down multiple layers of components!
           />
         )}
       </div>
