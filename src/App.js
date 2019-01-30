@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import StatePage from "./childStatelessComponents/StatePage";
 import PropsPage from "./childStatelessComponents/PropsPage";
 import "./App.css";
+import SolutionParent from "./SolutionParent";
 
 class App extends Component {
   //This is the current internal state of my parent component. It keeps track of
   // which pages need to be rendered.
   state = {
     statePage: false,
-    propsPage: false
+    propsPage: false,
+    solutionClick: false
   };
 
   //Function that runs once the Parent Component is ready to go!
@@ -21,7 +23,8 @@ class App extends Component {
   propsClick = () => {
     this.setState({
       statePage: false,
-      propsPage: true
+      propsPage: true,
+      solutionClick: false
     });
   };
 
@@ -29,7 +32,8 @@ class App extends Component {
   stateClick = () => {
     this.setState({
       statePage: true,
-      propsPage: false
+      propsPage: false,
+      solutionClick: false
     });
   };
 
@@ -37,7 +41,18 @@ class App extends Component {
   resetClick = () => {
     this.setState({
       statePage: false,
-      propsPage: false
+      propsPage: false,
+      solutionClick: false
+    });
+  };
+
+  //I've added this in to render a solution, there are better ways
+  // to do this, but we're focusing on the basics
+  solutionClick = () => {
+    this.setState({
+      statePage: false,
+      propsPage: false,
+      solutionClick: true
     });
   };
 
@@ -65,6 +80,11 @@ class App extends Component {
               <button onClick={this.propsClick}>Learn About Props</button>
             </header>
           </div>
+        )}
+        {/*When this button is clicked run the solutionClick function*/}
+        <button onClick={this.solutionClick}>Solution..scroll down</button>
+        {this.state.solutionClick === true && (
+          <SolutionParent reset={this.resetClick} />
         )}
       </div>
     );
